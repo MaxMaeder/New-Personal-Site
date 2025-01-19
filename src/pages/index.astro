@@ -1,50 +1,137 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import PageLayout from '../layouts/PageLayout.astro';
+import Button from '../components/Button.astro';
+import Toast from '../components/Toast.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<PageLayout>
+	<main>
+		<Toast />
+		<div id="hero" class="section">
+			<img src="headshot.jpeg" alt="Max Maeder Headshot">
+			<div>
+				<h1>Hi, I'm Max</h1>
+				<p>
+					I'm an undergraduate student majoring in Computer & Data Sciences at the 
+					University of Wisconsin-Madison.
+				</p>
+				<div id="contact-container">
+					<Button 
+						id="email-copy"
+						text="max@mmaeder.com"
+						svg="file-copy.svg"
+					/>
+					·
+					<Button 
+						text="LinkedIn"
+						href="https://www.linkedin.com/in/maxmaeder/"
+						target="_blank"
+						svg="arrow-up-right.svg"
+					/>
+					·
+					<Button 
+						text="Resume"
+						href="/resume.pdf"
+						target="_blank"
+						svg="arrow-up-right.svg"
+					/>
+				</div>
+				<h3>Places I've worked:</h3>
+				<div id="companies-container">
+					<img src="company-logos/capital-one.svg" alt="Capital One">
+					<img src="company-logos/talos.svg" alt="Talos">
+					<img src="company-logos/ramp.svg" alt="Ramp">
+				</div>
+			</div>
+		</div>
+		<div id="projects-header" class="section">
+			<h3>Projects</h3>
+		</div>
+		<div id="projects">
+			{Array.from({ length: 50 }).map((_, index) => (
+				<div class="project">
+					<p>Repeated Element {index + 1}</p>
+				</div>
+			))}
+		</div>
+	</main>
+</PageLayout>
+
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: relative;
+	}
+	h1 {
+		font-weight: 500;
+		font-size: 2rem;
+	}
+	.section {
+		width: 80%;
+		margin: 2rem 0 0;
+	}
+	#hero {
+		display: flex;
+		gap: 2rem;
+	}
+	#hero > img {
+		display: inline;
+		border: 2px solid black;
+		height: 25vw;
+	}
+	#hero > div {
+		flex-grow: 1;
+	}
+	#contact-container {
+		display: flex;
+		gap: .25rem;
+		margin-bottom: 2rem;
+	}
+	#companies-container {
+		display: flex;
+		gap: 2rem;
+	}
+	#companies-container > img {
+		height: 3rem;
+		max-width: 8rem;
+		width: auto;
+		object-fit: contain;
+	}
+	#projects-header {
+		width: 100%;
+		padding: 1rem 2rem;
+		border: 2px black;
+		border-style: solid none none;
+	}
+	#projects-header > h3 {
+		margin: 0;
+		font-weight: 500;
+		font-size: 2rem;
+	}
+	#projects {
+		display: grid;
+		width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); /* Responsive columns */
+		grid-gap: 2px;
+	}
+	.project {
+		outline: 2px solid black;
+        padding: 1rem;
+        text-align: center; /* Center content */
+		aspect-ratio: 1;
+	}
+</style>
+
+<script>
+	import { Toaster } from "../lib/toaster"
+
+	const toast = new Toaster();
+
+	const copyButton = document.getElementById("email-copy");
+	copyButton?.addEventListener("click", () => {
+		navigator.clipboard.writeText("max@mmaeder.com")
+		toast.showMessage("Email copied.");
+	})
+</script>

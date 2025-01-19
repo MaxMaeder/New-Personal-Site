@@ -1,0 +1,26 @@
+<div id="toast"></div>
+
+<style is:global>
+  #toast {
+    background-color: black;
+    color: white;
+
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 10;
+
+    opacity: 0;
+    transform: translateY(-1.5rem);
+
+    transition: all 0.25s ease-in-out;
+  }
+  #toast.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>

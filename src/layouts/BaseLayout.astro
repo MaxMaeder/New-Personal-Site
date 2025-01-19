@@ -1,0 +1,62 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+
+// type Props = BaseHead.Props
+
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+        <slot />
+    </body>
+</html>
+
+<style is:global>
+    html, body {
+        margin: 0;
+        height: 100%;
+    }
+
+    /**
+    * This is a variable font
+    * You can control variable axes as shown below:
+    * font-variation-settings: wght 400.0;
+    *
+    * available axes:
+    'wght' (range from 100.0 to 900.0
+    */
+    @font-face {
+    font-family: 'Switzer';
+    src: url('../fonts/Switzer-Variable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    }
+    /**
+    * This is a variable font
+    * You can control variable axes as shown below:
+    * font-variation-settings: wght 400.0;
+    *
+    * available axes:
+    'wght' (range from 100.0 to 900.0
+    */
+    @font-face {
+    font-family: 'SwitzerItalic';
+    src: url('../fonts/Switzer-VariableItalic.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: italic;
+    }
+
+    * {
+        font-family: "Switzer";
+        font-weight: normal;
+        box-sizing: border-box;
+    }
+</style>
