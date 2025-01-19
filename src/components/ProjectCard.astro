@@ -1,21 +1,17 @@
 ---
-interface Project {
-  title: string;
-  type: "video" | "post" | "link"
-  imgUrl?: string;
-  href: string;
-}
+import { type Project, getProjectActionText } from "../lib/contentful/projects"
+
 type Props = Project;
 
-const { title, type, imgUrl, href } = Astro.props
+const project = Astro.props
 ---
 
-<a class="container" href={href} target="_blank">
-  {imgUrl && (<img class="bg" src={imgUrl} />)}
+<a class="container projectCard" href={project.href} target="_blank" data-type={project.type}>
+  {project.imgUrl && (<img class="bg" src={project.imgUrl} />)}
   <div class="details">
     <div class="text">
-      <h4>{title}</h4>
-      <p>{type}</p>
+      <h4>{project.title}</h4>
+      <p>{getProjectActionText(project)}</p>
     </div>
     <div class="icon">
       <img src="arrow-up-right.svg" />
@@ -87,3 +83,25 @@ const { title, type, imgUrl, href } = Astro.props
     margin-top: -4rem;
   }
 </style>
+
+
+<script>
+  import { Lightboxer } from "../lib/lightboxer";
+
+  const lightbox = new Lightboxer()
+  const cards = document.querySelectorAll(".projectCard")
+  
+  for (const card of cards) {
+    if (!(card instanceof HTMLElement) || card.dataset.type != "video")
+      continue;
+
+    card.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const videoHref = card.getAttribute("href")
+
+      if (videoHref)
+        lightbox.showVideo(videoHref)
+    });
+  }
+</script>

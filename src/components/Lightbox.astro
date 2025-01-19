@@ -1,0 +1,41 @@
+<div id="lightbox">
+  <iframe allowfullscreen />
+  <img src="xmark-white.svg" />
+</div>
+
+<style is:global>
+  #lightbox.visible {
+    opacity: 1;
+    pointer-events: unset;
+  }
+</style>
+
+<style>
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.7);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  iframe {
+    width: 80vw;
+    aspect-ratio: 16 / 9;
+    border: none;
+  }
+  img {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    height: 3rem;
+    cursor: pointer;
+  }
+</style>

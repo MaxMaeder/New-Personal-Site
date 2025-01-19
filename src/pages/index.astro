@@ -3,11 +3,13 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Button from '../components/Button.astro';
 import Toast from '../components/Toast.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import Lightbox from '../components/Lightbox.astro';
 ---
 
 <PageLayout>
 	<main>
 		<Toast />
+		<Lightbox />
 		<div id="hero" class="section">
 			<img src="headshot.jpeg" alt="Max Maeder Headshot">
 			<div>
@@ -49,9 +51,19 @@ import ProjectCard from '../components/ProjectCard.astro';
 			<h3>Projects</h3>
 		</div>
 		<div id="projects">
+			<!-- https://www.noiseandgradient.com/?chaos=0.15&colors=%2355dde0-%2333658a-%232f4858-%23f6ae2d-%23f26419&grain=0.25 -->
+			<div class="project">
+				<ProjectCard title="Actively-Stabilized Rocket" type="video" imgUrl="test-bg-1.jpeg" href="https://www.youtube.com/embed/MTnVXjBcCJs" />
+			</div>
+			<div class="project">
+				<ProjectCard title="My Notes from Learning Python" type="link" imgUrl="test-bg-2.jpeg" href="#" />
+			</div>
+			<div class="project">
+				<ProjectCard title="My Notes from Learning Python" type="link" imgUrl="test-bg-3.jpeg" href="#" />
+			</div>
 			{Array.from({ length: 50 }).map((_, index) => (
 				<div class="project">
-					<ProjectCard title="My Notes from Learning Python" type="link" imgUrl="blog-placeholder-3.jpg" href="#" />
+					<ProjectCard title="My Notes from Learning Python" type="link" imgUrl="test-bg.jpeg" href="#" />
 				</div>
 			))}
 		</div>
