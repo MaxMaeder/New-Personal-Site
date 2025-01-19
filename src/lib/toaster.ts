@@ -1,4 +1,4 @@
-class Toaster {
+export class Toaster {
   #toast: HTMLElement;
   #timeoutId: number = 0;
 
@@ -19,5 +19,3 @@ class Toaster {
     }, 2000);
   }
 }
-
-export { Toaster };

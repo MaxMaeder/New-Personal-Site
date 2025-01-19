@@ -1,0 +1,89 @@
+---
+interface Project {
+  title: string;
+  type: "video" | "post" | "link"
+  imgUrl?: string;
+  href: string;
+}
+type Props = Project;
+
+const { title, type, imgUrl, href } = Astro.props
+---
+
+<a class="container" href={href} target="_blank">
+  {imgUrl && (<img class="bg" src={imgUrl} />)}
+  <div class="details">
+    <div class="text">
+      <h4>{title}</h4>
+      <p>{type}</p>
+    </div>
+    <div class="icon">
+      <img src="arrow-up-right.svg" />
+      <img src="arrow-up-right.svg" />
+    </div>
+  </div>
+</a>
+
+<style>
+  .container {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .bg {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+  .details {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    padding: 1rem;
+    color: black;
+  }
+  .text {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .text * {
+    margin: 0;
+  }
+  .text h4 {
+    font-weight: 600;
+    font-size: 2rem;
+  }
+  .text p {
+    line-height: 1.5rem;
+    margin-bottom: -1.5rem;
+    transition: margin-bottom 0.3s ease;
+  }
+  .container:hover .text p {
+    margin-bottom: 0;
+  }
+
+  .icon {
+    overflow: hidden;
+    height: 4rem;
+    flex-shrink: 0;
+  }
+  .icon img {
+    display: block;
+    height: 4rem;
+    transition: margin-top 0.3s ease;
+  }
+  .container:hover .icon img:first-child {
+    margin-top: -4rem;
+  }
+</style>

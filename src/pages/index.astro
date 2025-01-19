@@ -2,6 +2,7 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Button from '../components/Button.astro';
 import Toast from '../components/Toast.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 ---
 
 <PageLayout>
@@ -50,7 +51,7 @@ import Toast from '../components/Toast.astro';
 		<div id="projects">
 			{Array.from({ length: 50 }).map((_, index) => (
 				<div class="project">
-					<p>Repeated Element {index + 1}</p>
+					<ProjectCard title="My Notes from Learning Python" type="link" imgUrl="blog-placeholder-3.jpg" href="#" />
 				</div>
 			))}
 		</div>
@@ -118,8 +119,6 @@ import Toast from '../components/Toast.astro';
 	}
 	.project {
 		outline: 2px solid black;
-        padding: 1rem;
-        text-align: center; /* Center content */
 		aspect-ratio: 1;
 	}
 </style>
