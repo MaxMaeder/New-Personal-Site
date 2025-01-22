@@ -3,15 +3,14 @@ import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 ---
 
-<header>
-	<nav>
-		<h2><a href="/">Max Maeder</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/about">Writing</HeaderLink>
-		</div>
-	</nav>
-</header>
+<nav>
+	<h2><a href="/">Max Maeder</a></h2>
+	<div class="internal-links">
+		<HeaderLink href="/">Home</HeaderLink>
+		<HeaderLink href="/about">Writing</HeaderLink>
+	</div>
+</nav>
+
 <style>
 	* {
 		margin: 0;
@@ -24,6 +23,12 @@ import { SITE_TITLE } from '../consts';
 		font-size: 1.5rem;
 	}
 	nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+    background-image: url("/texture.png");
+
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
