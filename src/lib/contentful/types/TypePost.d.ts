@@ -2,9 +2,10 @@ import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleC
 
 export interface TypePostFields {
     title: EntryFieldTypes.Symbol;
+    slug: EntryFieldTypes.Symbol;
     previewText?: EntryFieldTypes.Text;
     date: EntryFieldTypes.Date;
-    content: EntryFieldTypes.RichText;
+    content: EntryFieldTypes.Text;
 }
 
 export type TypePostSkeleton = EntrySkeletonType<TypePostFields, "post">;

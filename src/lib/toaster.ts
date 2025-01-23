@@ -13,8 +13,9 @@ export class Toaster {
     this.#toast.classList.add("visible");
     this.#toast.innerText = message;
 
-    clearTimeout(this.#timeoutId);
-    setTimeout(() => {
+    window.clearTimeout(this.#timeoutId);
+
+    this.#timeoutId = window.setTimeout(() => {
       this.#toast.classList.remove("visible");
     }, 2000);
   }

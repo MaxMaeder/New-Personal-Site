@@ -1,0 +1,21 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import PostCard from "../../components/PostCard.astro"
+---
+
+<PageLayout>
+	<div class="post-grid">
+		{Array.from({length: 20}).map(_ => (
+			<PostCard />
+		))}
+	</div>
+</PageLayout>
+
+<style> 
+	.post-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+		grid-gap: 3rem;
+		padding: 3rem;
+	}
+</style>
