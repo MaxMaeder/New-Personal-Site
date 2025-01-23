@@ -1,12 +1,15 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import PostCard from "../../components/PostCard.astro"
+import { getPosts } from '../../lib/contentful/posts';
+
+const posts = await getPosts();
 ---
 
 <PageLayout>
 	<div class="post-grid">
-		{Array.from({length: 20}).map(_ => (
-			<PostCard />
+		{posts.map((post) => (
+			<PostCard post={post} />
 		))}
 	</div>
 </PageLayout>

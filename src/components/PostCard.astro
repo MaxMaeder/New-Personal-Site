@@ -1,12 +1,21 @@
-<a class="post-container" href="#">
-  <h3>Python Notes</h4>
+---
+import type { Post } from '../lib/contentful/posts'
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+---
+
+<a class="post-container" href={`/posts/${post.slug}`}>
+  <h3>{post.title}</h4>
   <p>
-    My notes from learning python. My notes from learning python.
-    My notes from learning python. My notes from learning python.
+    {post.previewText} 
   </p>
   <span class="button">
     Read more
-    <img src="arrow-right.svg" alt="" class="svg-icon" />
+    <img src="arrow-right.svg" class="svg-icon" />
   </span>
 </a>
 

@@ -1,24 +1,12 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
-import { getPosts, type Post } from "../../lib/contentful/posts";
+import { getPostBySlug } from "../../lib/contentful/posts";
 import showdown from "showdown";
 
-export async function getStaticPaths() {
-  const posts = await getPosts()
-  const pages = posts.map((post) => ({
-    params: { slug: post.slug },
-    props: {
-      post,
-    },
-  }));
-  return pages;
-}
+const { slug } = Astro.params;
 
-interface Props {
-  post: Post;
-}
+const post = await getPostBySlug(slug as string);
 
-const { post } = Astro.props;
 const mdConverter = new showdown.Converter();
 showdown.setFlavor("github")
 showdown.setOption("smartIndentationFix", true)

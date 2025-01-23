@@ -29,3 +29,17 @@ export const getPosts = async () => {
 
   return postResults.items.map((e) => parsePostEntry(e));
 };
+
+export const getPostBySlug = async (slug: string) => {
+  const postResults = await contentfulClient.getEntries<TypePostSkeleton>({
+    content_type: "post",
+    "fields.slug": slug,
+    limit: 1,
+  });
+
+  if (postResults.items.length === 0) {
+    throw new Error(`Post with slug "${slug}" not found.`);
+  }
+
+  return parsePostEntry(postResults.items[0]);
+};
