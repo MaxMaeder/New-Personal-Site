@@ -13,23 +13,22 @@ const projects = await getProjects();
 	<div class="layout">
 		<Toast />
 		<Lightbox />
-		<div id="hero" class="section">
-			<div class="img-wrapper">
-				<img src="headshot.jpeg" alt="Max Maeder Headshot">
-			</div>
-			<div>
+		<div class="hero section">
+			<img class="lg-headshot image" src="headshot.jpeg" alt="Max Maeder Headshot">
+			<div class="hero-details">
 				<h1>Hi, I'm Max</h1>
+				
 				<p>
 					I'm an undergraduate student majoring in Computer & Data Sciences at the 
 					University of Wisconsin-Madison.
 				</p>
-				<div id="contact-container">
+				<div class="contact-container">
 					<Button 
 						id="email-copy"
 						text="max@mmaeder.com"
 						svg="file-copy.svg"
 					/>
-					·
+					<span class="first-dot">·</span>
 					<Button 
 						text="LinkedIn"
 						href="https://www.linkedin.com/in/maxmaeder/"
@@ -45,17 +44,17 @@ const projects = await getProjects();
 					/>
 				</div>
 				<h3>Places I've worked:</h3>
-				<div id="companies-container">
+				<div class="companies-container">
 					<img src="company-logos/capital-one.svg" alt="Capital One">
 					<img src="company-logos/talos.svg" alt="Talos">
 					<img src="company-logos/ramp.svg" alt="Ramp">
 				</div>
 			</div>
 		</div>
-		<div id="projects-header" class="section">
+		<div class="projects-header section">
 			<h3>Projects</h3>
 		</div>
-		<div id="projects">
+		<div class="projects">
 			<!-- https://www.noiseandgradient.com/?chaos=0.15&colors=%2355dde0-%2333658a-%232f4858-%23f6ae2d-%23f26419&grain=0.25 -->
 			{projects.map((project) => (
 				<div class="project">
@@ -67,63 +66,116 @@ const projects = await getProjects();
 </PageLayout>
 
 <style>
+	/* Page layout */
 	.layout {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		position: relative;
 	}
+	.section {
+		width: 70%;
+		margin: 2rem 0 0;
+	}
+	/* Reusable styles */
+	.image {
+		border: 2px solid black;
+	}
+	/* Hero layout */
+	.hero {
+		display: flex;
+		align-items: stretch;
+		gap: 3rem;
+	}
+	.lg-headshot {
+		display: block;
+		height: 30vw;
+		min-height: 300px;
+		max-height: 400px;
+		width: auto;
+	}
+	.sm-headshot {
+		display: none;
+	}
+	.hero-details {
+		flex-grow: 1;
+	}
 	h1 {
 		font-weight: 500;
 		font-size: 2rem;
 		margin: 1rem 0;
 	}
-	.section {
-		width: 80%;
-		margin: 2rem 0 0;
+	@media (min-width: 800px) and (max-width: 1200px) {
+		.section {
+			width: 90%;
+		}
 	}
-	#hero {
+	@media (max-width: 799px) {
+		.hero {
+			width: 100%;
+			padding: 0 2rem;
+		}
+		.lg-headshot {
+			display: none;
+		}
+		h1 {
+			margin-top: 0;
+		}
+	}
+	/* Hero content */
+	.contact-container {
 		display: flex;
-		align-items: stretch;
-		gap: 2rem;
-	}
-	#hero > img {
-		display: block;
-		border: 2px solid black;
-		height: 100%;
-		width: auto;
-	}
-	#hero > div {
-		flex-grow: 1;
-	}
-	#contact-container {
-		display: flex;
+		flex-wrap: wrap;
 		gap: .25rem;
 		margin: 1rem 0 2rem;
 	}
-	#companies-container {
+	@media (max-width: 799px) {
+		.contact-container .first-dot {
+			color: transparent;
+			display: block;
+			height: 0.25rem;
+			width: 100%;
+		}
+	}
+	.companies-container {
 		display: flex;
 		gap: 2rem;
 		margin-top: 1rem;
 	}
-	#companies-container > img {
+	.companies-container > img {
 		height: 3rem;
 		max-width: 8rem;
 		width: auto;
 		object-fit: contain;
 	}
-	#projects-header {
+	@media (max-width: 1200px) {
+		.companies-container {
+			gap: 1.5rem;
+		}
+		.companies-container > img {
+			height: 2rem;
+			max-width: 5.5rem;
+		}
+	}
+	@media (max-width: 400px) {
+		.companies-container {
+			gap: unset;
+			justify-content: space-between;
+		}
+	}
+	/* Projects */
+	.projects-header {
 		width: 100%;
 		padding: 1rem 2rem;
 		border: 2px black;
 		border-style: solid none none;
 	}
-	#projects-header > h3 {
+	.projects-header > h3 {
 		margin: 0;
 		font-weight: 500;
 		font-size: 2rem;
 	}
-	#projects {
+	.projects {
 		display: grid;
 		width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -132,6 +184,14 @@ const projects = await getProjects();
 	.project {
 		outline: 2px solid black;
 		aspect-ratio: 1;
+	}
+	@media (max-width: 799px) {
+		.projects {
+			grid-template-columns: 1fr;
+		}
+		.project {
+			aspect-ratio: 2;
+		}
 	}
 </style>
 
