@@ -68,8 +68,10 @@ const { project } = Astro.props
     margin-bottom: -1.5rem;
     transition: margin-bottom 0.3s ease;
   }
-  .container:hover .text p {
-    margin-bottom: 0;
+  @media (hover: hover) {
+    .container:hover .text p {
+      margin-bottom: 0;
+    }
   }
 
   .icon {
@@ -82,8 +84,10 @@ const { project } = Astro.props
     height: 4rem;
     transition: margin-top 0.3s ease;
   }
-  .container:hover .icon img:first-child {
-    margin-top: -4rem;
+  @media (hover: hover) {
+    .container:hover .icon img:first-child {
+      margin-top: -4rem;
+    }
   }
 </style>
 

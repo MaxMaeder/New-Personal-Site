@@ -66,7 +66,9 @@ const { post } = Astro.props;
     transition: width 0.3s ease-out;
   }
 
-  .post-container:hover .button::after {
-    width: 100%;
+  @media (hover: hover) {
+    .post-container:hover .button::after {
+      width: 100%;
+    }
   }
 </style>

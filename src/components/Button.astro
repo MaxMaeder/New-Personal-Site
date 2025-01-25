@@ -58,8 +58,10 @@ const isLink = !!href;
   transition: width 0.3s ease-out;
 }
 
-.button:hover::after {
-  width: 100%;
+@media (hover: hover) {
+  .button:hover::after {
+    width: 100%;
+  }
 }
 </style>
 
