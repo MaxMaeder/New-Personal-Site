@@ -2,11 +2,15 @@
 import PageLayout from '../../layouts/PageLayout.astro';
 import PostCard from "../../components/PostCard.astro"
 import { getPosts } from '../../lib/contentful/posts';
+import Button from '../../components/Button.astro';
 
 const posts = await getPosts();
 ---
 
 <PageLayout>
+	<div class="rss-container">
+		<Button text="RSS Feed" href="/rss.xml" svg="rss.svg" />
+	</div>
 	<div class="post-grid">
 		{posts.map((post) => (
 			<PostCard post={post} />
@@ -15,10 +19,17 @@ const posts = await getPosts();
 </PageLayout>
 
 <style> 
+	.rss-container {
+		display: grid;
+		justify-content: end;
+		align-items: start;
+		height: 3rem;
+		padding: 1rem 1rem 0;
+	}
 	.post-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
 		grid-gap: 3rem;
-		padding: 3rem;
+		padding: 0 3rem 3rem;
 	}
 </style>

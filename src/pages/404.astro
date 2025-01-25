@@ -1,0 +1,10 @@
+---
+import ErrorPage from "../components/ErrorPage.astro";
+import PageLayout from "../layouts/PageLayout.astro";
+
+const path = Astro.url.pathname;
+---
+
+<PageLayout>
+  <ErrorPage message="Page not found." details={`Path: ${path}`} />
+</PageLayout>

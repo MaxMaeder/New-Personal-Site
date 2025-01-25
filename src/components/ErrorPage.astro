@@ -1,0 +1,15 @@
+---
+interface Props {
+  message: string;
+  details?: string;
+}
+
+const { message, details } = Astro.props;
+---
+
+<div class="error-container">
+  <div class="error-content">
+    <h2 class="error-title">{message}</h2>
+    {details && <p class="error-details">{details}</p>}
+  </div>
+</div>

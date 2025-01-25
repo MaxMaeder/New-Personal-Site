@@ -5,11 +5,35 @@ import Header from "../components/Header.astro"
 
 <BaseLayout>
   <Header />
-  <slot />
+  <main>
+    <div class="bg">
+      <slot />
+    </div>
+  </main>
 </BaseLayout>
 
 <style is:global>
   body {
+    height: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overscroll-behavior: none;
+  }
+  body.stop-scroll {
+    overflow: hidden;
+  }
+  main {
+    flex: 1;
+
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .bg {
     background-image: url("/texture.png");
+    flex-grow: 1;
   }
 </style>

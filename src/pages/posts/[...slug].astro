@@ -1,20 +1,15 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
 import { getPostBySlug } from "../../lib/contentful/posts";
-import showdown from "showdown";
+import "../../styles/highlight.js.css";
+import { mdConverter } from "../../lib/showdown";
 
 const { slug } = Astro.params;
 
 const post = await getPostBySlug(slug as string);
-
-const mdConverter = new showdown.Converter();
-showdown.setFlavor("github")
-showdown.setOption("smartIndentationFix", true)
-showdown.setOption("tables", true)
 ---
 
 <PageLayout>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
   <article set:html={mdConverter.makeHtml(post.content)} />
 </PageLayout>
 
@@ -23,8 +18,3 @@ showdown.setOption("tables", true)
     padding: 1rem 4rem;
   }
 </style>
-
-<script>
-  import hljs from "highlight.js";
-  hljs.highlightAll();
-</script>
