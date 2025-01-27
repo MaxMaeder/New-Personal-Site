@@ -1,9 +1,22 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Header from "../components/Header.astro"
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_SHARE_IMAGE } from "../consts";
+
+interface Props {
+  title?: string;
+  description?: string;
+  imageUrl?: string;
+}
+
+const { title, description, imageUrl } = Astro.props;
 ---
 
-<BaseLayout>
+<BaseLayout 
+  title={title ? `${title} | ${SITE_TITLE}` : SITE_TITLE}
+  description={description ?? SITE_DESCRIPTION}
+  imageUrl={imageUrl ?? SITE_SHARE_IMAGE}
+  >
   <Header />
   <main>
     <div class="bg">

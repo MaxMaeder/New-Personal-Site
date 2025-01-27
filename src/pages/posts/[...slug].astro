@@ -1,15 +1,16 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
 import { getPostBySlug } from "../../lib/contentful/posts";
-import "../../styles/highlight.js.css";
 import { mdConverter } from "../../lib/showdown";
+
+import "../../styles/highlight.js.css";
 
 const { slug } = Astro.params;
 
 const post = await getPostBySlug(slug as string);
 ---
 
-<PageLayout>
+<PageLayout title={post.title}>
   <article set:html={mdConverter.makeHtml(post.content)} />
 </PageLayout>
 
