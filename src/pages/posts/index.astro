@@ -9,7 +9,7 @@ const posts = await getPosts();
 
 <PageLayout>
 	<div class="rss-container">
-		<Button text="RSS Feed" href="/rss.xml" svg="rss.svg" />
+		<Button text="RSS Feed" href="/rss.xml" target="_blank" svg="rss.svg" />
 	</div>
 	<div class="post-grid">
 		{posts.map((post) => (
