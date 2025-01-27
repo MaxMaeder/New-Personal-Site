@@ -9,7 +9,7 @@ interface Props {
 const { error } = Astro.props;
 ---
 
-<PageLayout>
+<PageLayout centerContent>
   <ErrorPage 
     message="Error occurred on page." 
     details={error instanceof Error ? error.message : undefined} 

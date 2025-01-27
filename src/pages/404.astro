@@ -5,6 +5,6 @@ import PageLayout from "../layouts/PageLayout.astro";
 const path = Astro.url.pathname;
 ---
 
-<PageLayout>
+<PageLayout centerContent>
   <ErrorPage message="Page not found." details={`Path: ${path}`} />
 </PageLayout>

@@ -7,9 +7,10 @@ interface Props {
   title?: string;
   description?: string;
   imageUrl?: string;
+  centerContent?: boolean;
 }
 
-const { title, description, imageUrl } = Astro.props;
+const { title, description, imageUrl, centerContent } = Astro.props;
 ---
 
 <BaseLayout 
@@ -19,35 +20,34 @@ const { title, description, imageUrl } = Astro.props;
   >
   <Header />
   <main>
-    <div class="bg">
-      <slot />
-    </div>
+    <slot />
   </main>
 </BaseLayout>
 
 <style is:global>
   body {
     height: 100%;
-    min-height: 100vh;
 
     display: flex;
     flex-direction: column;
 
     overscroll-behavior: none;
-    overflow: hidden;
+    background-image: url("/texture.png");
   }
   body.stop-scroll {
     overflow: hidden;
   }
   main {
     flex: 1;
-
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-  }
-  .bg {
-    background-image: url("/texture.png");
-    flex-grow: 1;
   }
 </style>
+
+{centerContent && (
+  <style is:global>
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>)
+}
