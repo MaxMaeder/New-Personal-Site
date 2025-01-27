@@ -16,7 +16,12 @@ const post = await getPostBySlug(slug as string);
 
 <style>
   article {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
     padding: 1rem 4rem;
+
   }
   @media (max-width: 799px) {
 		article {
