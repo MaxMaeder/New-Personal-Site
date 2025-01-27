@@ -18,24 +18,28 @@ const { title, description, imageUrl, centerContent } = Astro.props;
   description={description ?? SITE_DESCRIPTION}
   imageUrl={imageUrl ?? SITE_SHARE_IMAGE}
   >
-  <Header />
-  <main>
-    <slot />
-  </main>
+  <div class="page-layout">
+    <Header />
+    <main>
+      <slot />
+    </main>
+  </div>
 </BaseLayout>
 
 <style is:global>
   body {
     height: 100%;
 
-    display: flex;
-    flex-direction: column;
-
     overscroll-behavior: none;
     background-image: url("/texture.png");
   }
   body.stop-scroll {
     overflow: hidden;
+  }
+  .page-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
   }
   main {
     flex: 1;
