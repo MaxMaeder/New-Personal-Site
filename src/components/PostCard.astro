@@ -1,5 +1,6 @@
 ---
 import type { Post } from '../lib/contentful/posts'
+import FormattedDate from './FormattedDate.astro';
 
 interface Props {
   post: Post;
@@ -9,7 +10,10 @@ const { post } = Astro.props;
 ---
 
 <a class="post-container" href={`/posts/${post.slug}`}>
-  <h3>{post.title}</h4>
+  <div>
+    <h3>{post.title}</h4>
+    <span>Published <FormattedDate date={post.date} /></span>
+  </div>
   <p>
     {post.previewText} 
   </p>
@@ -32,6 +36,9 @@ const { post } = Astro.props;
 	.post-container h3 {
 		font-size: 1.7rem;
 	}
+  .post-container span {
+    display: block;
+  }
 
   .button {
     font-weight: bold;
