@@ -7,17 +7,21 @@ export class Lightboxer {
 
     this.#lightbox = container;
 
-    container.addEventListener("click", () => {
-      this.#lightbox.classList.remove("visible");
-      document.body.classList.remove("stop-scroll");
-    });
+    container.addEventListener("click", () => this.hideEmbed());
   }
 
-  showVideo(src: string) {
+  showEmbed(src: string) {
     this.#lightbox.classList.add("visible");
     document.body.classList.add("stop-scroll");
 
-    const iframe = this.#lightbox.querySelector("iframe");
-    if (iframe) iframe.src = src;
+    const iframe = document.createElement("iframe");
+    this.#lightbox.appendChild(iframe);
+    iframe.src = src;
+  }
+
+  hideEmbed() {
+    this.#lightbox.classList.remove("visible");
+    document.body.classList.remove("stop-scroll");
+    this.#lightbox.querySelector("iframe")?.remove();
   }
 }

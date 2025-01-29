@@ -8,15 +8,17 @@ interface Props {
   description?: string;
   imageUrl?: string;
   centerContent?: boolean;
+  loadHjsStyles?: boolean;
 }
 
-const { title, description, imageUrl, centerContent } = Astro.props;
+const { title, description, imageUrl, centerContent, loadHjsStyles } = Astro.props;
 ---
 
 <BaseLayout 
   title={title ? `${title} | ${SITE_TITLE}` : SITE_TITLE}
   description={description ?? SITE_DESCRIPTION}
   imageUrl={imageUrl ?? SITE_PREVIEW_IMAGE}
+  loadHjsStyles={loadHjsStyles}
   >
   <div class="page-layout">
     <Header />

@@ -3,18 +3,11 @@ import XMark from "../icons/XMark.astro";
 ---
 
 <div id="lightbox">
-  <iframe allowfullscreen />
+  <p class="loader">Loading...</p>
   <XMark />
 </div>
 
 <style is:global>
-  #lightbox.visible {
-    opacity: 1;
-    pointer-events: unset;
-  }
-</style>
-
-<style>
   #lightbox {
     position: fixed;
     inset: 0;
@@ -30,12 +23,30 @@ import XMark from "../icons/XMark.astro";
     pointer-events: none;
     transition: opacity 0.3s ease;
   }
-  iframe {
+  #lightbox.visible {
+    opacity: 1;
+    pointer-events: unset;
+  }
+  #lightbox .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: 400;
+
+    visibility: hidden;
+  }
+  #lightbox.visible .loader {
+    visibility: visible;
+  }
+  #lightbox iframe {
+    z-index: 10;
     width: 80vw;
     aspect-ratio: 16 / 9;
     border: none;
   }
-  #lightbox :global(svg) {
+  #lightbox svg {
     position: fixed;
     top: 2rem;
     right: 2rem;
@@ -47,10 +58,10 @@ import XMark from "../icons/XMark.astro";
     #lightbox {
       padding: 0 1rem;
     }
-    iframe {
+    #lightbox iframe {
       width: 100%;
     }
-    #lightbox :global(svg) {
+    #lightbox svg {
       top: 1rem;
       right: 1rem;
       height: 2rem;
