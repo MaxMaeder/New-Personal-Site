@@ -9,7 +9,7 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
-  output: "server",
+  output: "static",
   adapter: vercel(),
   site: "https://mmaeder.com",
   integrations: [mdx(), sitemap()],

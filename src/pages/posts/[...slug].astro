@@ -4,7 +4,6 @@ import { getPostBySlug } from "../../lib/contentful/posts";
 import { mdConverter } from "../../lib/showdown";
 import { generateAsciiArt } from "../../lib/ascii";
 
-import "../../styles/highlight.js.css";
 import FormattedDate from "../../components/FormattedDate.astro";
 
 const { slug } = Astro.params;
@@ -14,7 +13,10 @@ const post = await getPostBySlug(slug as string);
 const asciiTitle = await generateAsciiArt(post.title);
 ---
 
-<PageLayout title={post.title}>
+<PageLayout title={post.title} description={post.previewText}>
+  <link href="/hjs-styles/github.css" media="(prefers-color-scheme: light)" rel="stylesheet">
+  <link href="/hjs-styles/github-dark.css" media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)" rel="stylesheet">
+
   <div class="article-container">
     <div class="title-container">
        <div class="title">
@@ -77,12 +79,20 @@ const asciiTitle = await generateAsciiArt(post.title);
 </style>
 
 <style is:global>
+  article pre {
+    border: 1px solid var(--border-code-color);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+  }
+  article pre, article pre code {
+    background: var(--bg-code-color) !important;
+  }
+
   code:not(pre code) {
-    /* display: inline-block; */
-    color: #444;
-    background-color: #f3f3f3;
+    color: var(--text-code-color);
+    background-color: var(--bg-code-color);
     font-family: monospace;
-    border: 1px solid #9d9d9d;
+    border: 1px solid var(--border-code-color);
     border-radius: 4px;
     padding: 2px;
     margin: 1px 0;

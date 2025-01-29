@@ -27,9 +27,12 @@ const { title, description, imageUrl } = Astro.props;
 
     --bg-primary-color: var(--dark-primary-color);
     --bg-inverse-color: var(--light-primary-color);
+    --bg-code-color: rgb(13, 17, 23);
     --text-primary-color: var(--light-primary-color);
     --text-inverse-color: var(--dark-primary-color);
+    --text-code-color: #fff;
     --border-primary-color: var(--light-primary-color);
+    --border-code-color: #9d9d9d;
     --border-width: 2px;
   }
   @media (prefers-color-scheme: light) {
@@ -39,9 +42,12 @@ const { title, description, imageUrl } = Astro.props;
 
       --bg-primary-color: var(--light-primary-color);
       --bg-inverse-color: var(--dark-primary-color);
+      --bg-code-color: #f3f3f3;
       --text-primary-color: var(--dark-primary-color);
       --text-inverse-color: var(--light-primary-color);
+      --text-code-color: #444;
       --border-primary-color: var(--dark-primary-color);
+      --border-code-color: #9d9d9d;
     }
   }
 </style>
