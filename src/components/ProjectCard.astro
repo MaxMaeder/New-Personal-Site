@@ -1,4 +1,5 @@
 ---
+import ArrowUpRight from "../icons/ArrowUpRight.astro";
 import { type Project, getProjectActionText } from "../lib/contentful/projects"
 
 
@@ -17,8 +18,8 @@ const { project } = Astro.props
       <p>{getProjectActionText(project)}</p>
     </div>
     <div class="icon">
-      <img src="arrow-up-right.svg" />
-      <img src="arrow-up-right.svg" />
+      <ArrowUpRight />
+      <ArrowUpRight />
     </div>
   </div>
 </a>
@@ -49,7 +50,7 @@ const { project } = Astro.props
     align-items: end;
 
     padding: 1rem;
-    color: black;
+    color: color(--text-primary-color);
   }
   .text {
     display: flex;
@@ -79,13 +80,14 @@ const { project } = Astro.props
     height: 4rem;
     flex-shrink: 0;
   }
-  .icon img {
+  .icon :global(svg) {
     display: block;
     height: 4rem;
+    width: auto;
     transition: margin-top 0.3s ease;
   }
   @media (hover: hover) {
-    .container:hover .icon img:first-child {
+    .container:hover .icon :global(svg:first-child) {
       margin-top: -4rem;
     }
   }

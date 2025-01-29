@@ -15,7 +15,7 @@ import HeaderLink from './HeaderLink.astro';
 		margin: 0;
 	}
 	h2 > a {
-		color: black;
+		color: var(--text-primary-color);
 		text-decoration: none;
 		font-weight: 700;
 		text-transform: uppercase;
@@ -26,13 +26,13 @@ import HeaderLink from './HeaderLink.astro';
 		top: 0;
 		z-index: 100;
 
-    background-color: white;
+    background-color: var(--bg-primary-color);
     background-image: url("/texture.png");
 
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		padding: 0.5rem 1rem;
-		border-bottom: 2px solid black;
+		border-bottom: 2px solid var(--border-primary-color);
 	}
 </style>

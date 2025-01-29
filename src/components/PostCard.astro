@@ -1,4 +1,5 @@
 ---
+import ArrowRight from '../icons/ArrowRight.astro';
 import type { Post } from '../lib/contentful/posts'
 import FormattedDate from './FormattedDate.astro';
 
@@ -19,7 +20,7 @@ const { post } = Astro.props;
   </p>
   <span class="button">
     Read more
-    <img src="arrow-right.svg" class="svg-icon" />
+    <ArrowRight />
   </span>
 </a>
 
@@ -30,7 +31,7 @@ const { post } = Astro.props;
     align-items: start;
     gap: 1rem;
 
-		color: black;
+		color: var(--text-primary-color);
 		text-decoration: none;
 	}
 	.post-container h3 {
@@ -44,7 +45,7 @@ const { post } = Astro.props;
     border: none;
     padding: 0;
 
-    color: black;
+    color: var(--text-primary-color);
     text-decoration: none;
     cursor: pointer;
 
@@ -52,7 +53,7 @@ const { post } = Astro.props;
     align-items: center;
     position: relative;
   }
-  .button .svg-icon {
+  .button :global(svg) {
     display: inline-block;
     width: 1em;
     height: auto;

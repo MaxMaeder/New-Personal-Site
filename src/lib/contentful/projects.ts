@@ -35,6 +35,8 @@ export const getProjects = async () => {
 
 export const getProjectActionText = (project: Project): string => {
   if (project.url.includes("youtube.com")) return "View video";
+  else if (project.url.includes("docs.google.com/presentation"))
+    return "View slide deck";
   else if (project.url.includes("post")) return "Read details";
   else if (project.url.includes("github.com")) return "Visit GitHub page";
   return "Visit external site";

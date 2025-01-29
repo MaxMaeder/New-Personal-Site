@@ -1,6 +1,10 @@
+---
+import XMark from "../icons/XMark.astro";
+---
+
 <div id="lightbox">
   <iframe allowfullscreen />
-  <img src="xmark-white.svg" />
+  <XMark />
 </div>
 
 <style is:global>
@@ -31,11 +35,12 @@
     aspect-ratio: 16 / 9;
     border: none;
   }
-  img {
+  #lightbox :global(svg) {
     position: fixed;
     top: 2rem;
     right: 2rem;
     height: 3rem;
+    width: auto;
     cursor: pointer;
   }
   @media (max-width: 799px) {
@@ -45,7 +50,7 @@
     iframe {
       width: 100%;
     }
-    img {
+    #lightbox :global(svg) {
       top: 1rem;
       right: 1rem;
       height: 2rem;

@@ -3,13 +3,16 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import PostCard from "../../components/PostCard.astro"
 import { getPosts } from '../../lib/contentful/posts';
 import Button from '../../components/Button.astro';
+import Rss from '../../icons/Rss.astro';
 
 const posts = await getPosts();
 ---
 
 <PageLayout title="Posts">
 	<div class="rss-container">
-		<Button text="RSS Feed" href="/rss.xml" target="_blank" svg="rss.svg" />
+		<Button text="RSS Feed" href="/rss.xml" target="_blank">
+			<Rss />
+		</Button>
 	</div>
 	<div class="post-grid">
 		{posts.map((post) => (

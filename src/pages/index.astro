@@ -5,6 +5,11 @@ import Toast from '../components/Toast.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Lightbox from '../components/Lightbox.astro';
 import { getProjects } from '../lib/contentful/projects';
+import FileCopy from '../icons/FileCopy.astro';
+import ArrowUpRight from '../icons/ArrowUpRight.astro';
+import CapitalOne from '../icons/CapitalOne.astro';
+import Ramp from '../icons/Ramp.astro';
+import Talos from '../icons/Talos.astro';
 
 const projects = await getProjects();
 ---
@@ -26,28 +31,31 @@ const projects = await getProjects();
 					<Button 
 						id="email-copy"
 						text="max@mmaeder.com"
-						svg="file-copy.svg"
-					/>
+					>
+						<FileCopy />
+					</Button>
 					<span class="first-dot">·</span>
 					<Button 
 						text="LinkedIn"
 						href="https://www.linkedin.com/in/maxmaeder/"
 						target="_blank"
-						svg="arrow-up-right.svg"
-					/>
+					>
+						<ArrowUpRight />
+					</Button>
 					·
 					<Button 
 						text="Resume"
 						href="/resume.pdf"
 						target="_blank"
-						svg="arrow-up-right.svg"
-					/>
+					>
+						<ArrowUpRight />
+					</Button>
 				</div>
 				<h3>Places I've worked or am working:</h3>
 				<div class="companies-container">
-					<img src="company-logos/capital-one.svg" alt="Capital One">
-					<img src="company-logos/talos.svg" alt="Talos">
-					<img src="company-logos/ramp.svg" alt="Ramp">
+					<CapitalOne />
+					<Talos />
+					<Ramp />
 				</div>
 			</div>
 		</div>
@@ -79,7 +87,7 @@ const projects = await getProjects();
 	}
 	/* Reusable styles */
 	.image {
-		border: 2px solid black;
+		border: 2px solid var(--border-primary-color);
 	}
 	/* Hero layout */
 	.hero {
@@ -142,7 +150,7 @@ const projects = await getProjects();
 		gap: 2rem;
 		margin-top: 1rem;
 	}
-	.companies-container > img {
+	.companies-container :global(svg) {
 		height: 3rem;
 		max-width: 8rem;
 		width: auto;
@@ -152,7 +160,7 @@ const projects = await getProjects();
 		.companies-container {
 			gap: 1.5rem;
 		}
-		.companies-container > img {
+		.companies-container :global(svg) {
 			height: 2rem;
 			max-width: 5.5rem;
 		}
@@ -167,7 +175,7 @@ const projects = await getProjects();
 	.projects-header {
 		width: 100%;
 		padding: 1rem 2rem;
-		border: 2px black;
+		border: 2px var(--border-primary-color);
 		border-style: solid none none;
 	}
 	.projects-header > h3 {
@@ -182,7 +190,7 @@ const projects = await getProjects();
 		grid-gap: 2px;
 	}
 	.project {
-		outline: 2px solid black;
+		outline: 2px solid var(--border-primary-color);
 		aspect-ratio: 1;
 	}
 	@media (max-width: 799px) {

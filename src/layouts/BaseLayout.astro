@@ -21,6 +21,32 @@ const { title, description, imageUrl } = Astro.props;
 </html>
 
 <style is:global>
+  :root {
+    --light-primary-color: #fffef1;
+    --dark-primary-color: rgb(12, 12, 12);
+
+    --bg-primary-color: var(--dark-primary-color);
+    --bg-inverse-color: var(--light-primary-color);
+    --text-primary-color: var(--light-primary-color);
+    --text-inverse-color: var(--dark-primary-color);
+    --border-primary-color: var(--light-primary-color);
+    --border-width: 2px;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --light-primary-color: white;
+      --dark-primary-color: black;
+
+      --bg-primary-color: var(--light-primary-color);
+      --bg-inverse-color: var(--dark-primary-color);
+      --text-primary-color: var(--dark-primary-color);
+      --text-inverse-color: var(--light-primary-color);
+      --border-primary-color: var(--dark-primary-color);
+    }
+  }
+</style>
+
+<style is:global>
   html {
     height: 100%;
   }
@@ -45,6 +71,7 @@ const { title, description, imageUrl } = Astro.props;
     font-weight: normal;
     box-sizing: border-box;
     margin: 0;
+    color: var(--text-primary-color)
   }
 
   .error-content {
