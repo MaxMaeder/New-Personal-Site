@@ -87,12 +87,13 @@ const asciiTitle = await generateAsciiArt(post.title);
     border: 1px solid var(--border-code-color);
     border-radius: 4px;
     padding: 0.5rem 1rem;
+    overflow: auto;
   }
   article pre, article pre code {
     background: var(--bg-code-color) !important;
   }
 
-  code:not(pre code) {
+  article code:not(pre code) {
     color: var(--text-code-color);
     background-color: var(--bg-code-color);
     font-family: monospace;
