@@ -5,6 +5,7 @@ import { mdConverter } from "../../lib/showdown";
 import { generateAsciiArt } from "../../lib/ascii";
 
 import FormattedDate from "../../components/FormattedDate.astro";
+import ArticleContainer from "../../components/ArticleContainer.astro";
 
 export async function getStaticPaths() {
 	const posts = await getPosts(true);
@@ -21,7 +22,7 @@ const asciiTitle = await generateAsciiArt(post.title);
 ---
 
 <PageLayout title={post.title} description={post.previewText} loadHjsStyles>
-  <div class="article-container">
+  <ArticleContainer>
     <div class="title-container">
        <div class="title">
         {asciiTitle.map((word) => (
@@ -31,13 +32,10 @@ const asciiTitle = await generateAsciiArt(post.title);
       <p class="publish-details">Written by Max Maeder <span class="interpunct">·</span> Published <FormattedDate date={post.date} /></p>
     </div>
     <article set:html={mdConverter.makeHtml(post.content)} />
-  </div>
+  </ArticleContainer>
 </PageLayout>
 
 <style>
-  .article-container {
-    padding: 1rem 4rem;
-  }
   .title-container {
     border: 2px solid var(--border-primary-color);
     padding: 2rem;
@@ -62,9 +60,6 @@ const asciiTitle = await generateAsciiArt(post.title);
     overflow-x: hidden;
   }
   @media (max-width: 799px) {
-    .article-container {
-      padding: 1rem 2rem;
-		}
     .title-container {
       border: 2px solid var(--border-primary-color);
       padding: 1rem;
