@@ -103,4 +103,13 @@ const asciiTitle = await generateAsciiArt(post.title);
     margin: 1px 0;
     line-height: 2;
   }
+
+  article table {
+    display: inline-block;
+    border-collapse: collapse;
+  }
+  article table th, article table td {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-code-color);
+  }
 </style>
