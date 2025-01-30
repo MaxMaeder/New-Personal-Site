@@ -91,12 +91,15 @@ const asciiTitle = await generateAsciiArt(post.title);
   article code:not(pre code) {
     color: var(--text-code-color);
     background-color: var(--bg-code-color);
-    font-family: monospace;
     border: 1px solid var(--border-code-color);
     border-radius: 4px;
     padding: 2px;
     margin: 1px 0;
     line-height: 2;
+  }
+
+  article code, article code * {
+    font-family: monospace;
   }
 
   article table {
