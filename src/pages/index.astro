@@ -221,6 +221,11 @@ const projects = await getProjects();
 		overflow: hidden;
 
 		padding: 1rem 0 0.5rem;
+
+		opacity: 0;
+	}
+	.animal-friends:global(.visible) {
+		opacity: 1;
 	}
 	.animal-friends :global(svg) {
 		flex-shrink: 0;
@@ -271,6 +276,7 @@ const projects = await getProjects();
 
 		animalContainer.style.width = `${projContW - projCardsEnd}px`;
 		animalContainer.style.height = `${projCardH}px`;
+		animalContainer.classList.add("visible");
 	}
 
 	addEventListener("resize", resizeAnimals);
