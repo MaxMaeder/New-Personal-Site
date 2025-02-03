@@ -10,6 +10,8 @@ import ArrowUpRight from '../vectors/ArrowUpRight.astro';
 import CapitalOne from '../vectors/companies/CapitalOne.astro';
 import Ramp from '../vectors/companies/Ramp.astro';
 import Talos from '../vectors/companies/Talos.astro';
+import Shoebill from '../vectors/animals/Shoebill.astro';
+import Capybara from '../vectors/animals/Capybara.astro';
 
 const projects = await getProjects();
 ---
@@ -19,7 +21,7 @@ const projects = await getProjects();
 		<Toast />
 		<Lightbox />
 		<div class="hero section">
-			<img class="lg-headshot image" src="headshot.jpeg" alt="Max Maeder Headshot">
+			<img class="headshot image" src="headshot.jpeg" alt="Max Maeder Headshot">
 			<div class="hero-details">
 				<h1>Hi, I'm Max</h1>
 				
@@ -62,13 +64,18 @@ const projects = await getProjects();
 		<div class="projects-header section">
 			<h3>Projects</h3>
 		</div>
-		<div class="projects">
+		<div class="projects" data-projects-container>
 			<!-- https://www.noiseandgradient.com/?chaos=0.15&colors=%2355dde0-%2333658a-%232f4858-%23f6ae2d-%23f26419&grain=0.25 -->
 			{projects.map((project) => (
-				<div class="project">
+				<div class="project" data-project>
 					<ProjectCard project={project} />
 				</div>
 			))}
+			<div class="animal-friends" data-animals-container>
+				<Shoebill class="shoebill"/>
+				<div class="gap"></div>
+				<Capybara class="capybara" />
+			</div>
 		</div>
 	</div>
 </PageLayout>
@@ -95,15 +102,12 @@ const projects = await getProjects();
 		align-items: stretch;
 		gap: 3rem;
 	}
-	.lg-headshot {
+	.headshot {
 		display: block;
 		height: 30vw;
 		min-height: 300px;
 		max-height: 400px;
 		width: auto;
-	}
-	.sm-headshot {
-		display: none;
 	}
 	.hero-details {
 		flex-grow: 1;
@@ -123,7 +127,7 @@ const projects = await getProjects();
 			width: 100%;
 			padding: 0 2rem;
 		}
-		.lg-headshot {
+		.headshot {
 			display: none;
 		}
 		h1 {
@@ -201,9 +205,43 @@ const projects = await getProjects();
 			aspect-ratio: 2;
 		}
 	}
+	/* Animals in projects section */
+	.animal-friends {
+		position: absolute;
+		z-index: -10;
+		right: 0;
+		bottom: 0;
+		height: 20rem; /* default value */
+		width: 25rem;  /* default value */
+		max-width: 40rem;
+		
+		display: flex;
+		justify-content: center;
+		align-items: end;
+		overflow: hidden;
+
+		padding: 1rem 0 0.5rem;
+	}
+	.animal-friends :global(svg) {
+		flex-shrink: 0;
+		opacity: 0.75;
+	}
+	.animal-friends .gap {
+		flex-shrink: 1;
+		width: 4rem;
+	}
+	.animal-friends :global(.shoebill) {
+		height: 100%;
+		transform: scaleX(-100%);
+	}
+	.animal-friends :global(.capybara) {
+		height: 50%;
+	}
 </style>
 
 <script>
+	// Email copy logic
+
 	import { Toaster } from "../lib/toaster"
 
 	const toast = new Toaster();
@@ -213,4 +251,28 @@ const projects = await getProjects();
 		navigator.clipboard.writeText("max@mmaeder.com")
 		toast.showMessage("Email copied.");
 	})
+</script>
+
+<script>
+	// Animal placement logic
+
+	const projectContainer = document.querySelector("[data-projects-container]");
+	const projects = document.querySelectorAll("[data-project]");
+	const lastProject = projects[projects.length - 1];
+
+	const animalContainer = document.querySelector("[data-animals-container]");
+
+	const resizeAnimals = () => {
+		if (!projectContainer || !lastProject || !animalContainer || !(animalContainer instanceof HTMLElement))
+		return;
+	
+		const { width: projContW } = projectContainer.getBoundingClientRect();
+		const { height: projCardH, right: projCardsEnd } = lastProject.getBoundingClientRect();
+
+		animalContainer.style.width = `${projContW - projCardsEnd}px`;
+		animalContainer.style.height = `${projCardH}px`;
+	}
+
+	addEventListener("resize", resizeAnimals);
+	resizeAnimals();
 </script>
