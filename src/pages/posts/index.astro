@@ -3,7 +3,9 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import PostCard from "../../components/PostCard.astro"
 import { getPosts } from '../../lib/contentful/posts';
 import Button from '../../components/Button.astro';
-import Rss from '../../icons/Rss.astro';
+import Rss from '../../vectors/Rss.astro';
+import Capybara from '../../vectors/animals/Capybara.astro';
+import Shoebill from '../../vectors/animals/Shoebill.astro';
 
 const posts = await getPosts();
 ---
@@ -19,6 +21,11 @@ const posts = await getPosts();
 			<PostCard post={post} />
 		))}
 	</div>
+	<div class="animal-friends">
+		<Capybara class="capybara" />
+		<Shoebill class="shoebill"/>
+	</div>
+	{/* Add Percival and Gustavo */}
 </PageLayout>
 
 <style> 
@@ -30,10 +37,28 @@ const posts = await getPosts();
 		padding: 1rem 1rem 0;
 	}
 	.post-grid {
+		flex-grow: 1;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
 		grid-gap: 3rem;
 		padding: 0 3rem 3rem;
+	}
+	.animal-friends {
+		display: flex;
+		justify-content: end;
+		align-items: end;
+		gap: 6rem;
+		padding: 0 4rem 2rem;
+	}
+	.animal-friends :global(svg) {
+		height: auto;
+	}
+	.animal-friends :global(.shoebill) {
+		width: 7rem;
+	}
+	.animal-friends :global(.capybara) {
+		width: 10rem;
+		transform: scaleX(-100%);
 	}
 	@media (max-width: 799px) {
 		.rss-container {
@@ -43,6 +68,16 @@ const posts = await getPosts();
 		.post-grid {
 			grid-template-columns: 1fr;
 			padding: 0 2rem 2rem;
+		}
+		.animal-friends {
+			gap: 2rem;
+			padding: 0 2rem 1rem;
+		}
+		.animal-friends :global(.shoebill) {
+			width: 5rem;
+		}
+		.animal-friends :global(.capybara) {
+			width: 7rem;
 		}
 	}
 </style>
