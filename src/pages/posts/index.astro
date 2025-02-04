@@ -49,16 +49,17 @@ const posts = await getPosts();
 		align-items: end;
 		gap: 4rem;
 		padding: 0 4rem 2rem;
+		height: 22.5rem;
 	}
 	.animal-friends :global(svg) {
-		height: auto;
+		width: auto;
 		opacity: 0.75;
 	}
 	.animal-friends :global(.shoebill) {
-		width: 7rem;
+		height: 100%;
 	}
 	.animal-friends :global(.capybara) {
-		width: 8.75rem;
+		height: 55%;
 		transform: scaleX(-100%);
 	}
 	@media (max-width: 799px) {
@@ -71,14 +72,9 @@ const posts = await getPosts();
 			padding: 0 2rem 2rem;
 		}
 		.animal-friends {
+			height: 15rem;
 			gap: 1.5rem;
 			padding: 0 2rem 1rem;
-		}
-		.animal-friends :global(.shoebill) {
-			width: 5rem;
-		}
-		.animal-friends :global(.capybara) {
-			width: 6.25rem;
 		}
 	}
 </style>
