@@ -276,7 +276,6 @@ const projects = await getProjects();
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		align-items: end;
 	}
 	.mobile-animal-friends .fact-container {
 		flex-grow: 1;
@@ -295,7 +294,9 @@ const projects = await getProjects();
 		opacity: 0.75;
 	}
 	.mobile-animal-friends .capybara-container {
-		flex-basis: 55%;
+		height: 55%;
+		width: 100%;
+		text-align: right;
 	}
 	.mobile-animal-friends :global(.capybara) {
 		height: 100%;
