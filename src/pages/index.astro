@@ -83,7 +83,9 @@ const projects = await getProjects();
 					<div class="fact-container">
 						<p class="fun-fact">Fun fact! Capybaras are very cool</p>
 					</div>
-					<Capybara class="capybara" />
+					<div class="capybara-container">
+						<Capybara class="capybara" />
+					</div>
 				</div>
 				<Shoebill class="shoebill"/>
 			</div>
@@ -292,8 +294,11 @@ const projects = await getProjects();
 	.mobile-animal-friends :global(svg) {
 		opacity: 0.75;
 	}
-	.mobile-animal-friends :global(.capybara) {
+	.mobile-animal-friends .capybara-container {
 		flex-basis: 55%;
+	}
+	.mobile-animal-friends :global(.capybara) {
+		height: 100%;
 		transform: scaleX(-100%);
 	}
 	.mobile-animal-friends :global(.shoebill) {
