@@ -72,9 +72,20 @@ const projects = await getProjects();
 				</div>
 			))}
 			<div class="animal-friends" data-animals-container>
-				<Shoebill class="shoebill"/>
-				<div class="gap"></div>
 				<Capybara class="capybara" />
+				<div class="gap"></div>
+				<Shoebill class="shoebill"/>
+			</div>
+		</div>
+		<div class="mobile-footer">
+			<div class="mobile-animal-friends">
+				<div class="v-left">
+					<div class="fact-container">
+						<p class="fun-fact">Fun fact! Capybaras are very cool</p>
+					</div>
+					<Capybara class="capybara" />
+				</div>
+				<Shoebill class="shoebill"/>
 			</div>
 		</div>
 	</div>
@@ -192,6 +203,7 @@ const projects = await getProjects();
 		width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 		grid-gap: 2px;
+		position: relative;
 	}
 	.project {
 		outline: 2px solid var(--border-primary-color);
@@ -220,7 +232,7 @@ const projects = await getProjects();
 		align-items: end;
 		overflow: hidden;
 
-		padding: 1rem 0 0.5rem;
+		padding: 1.25rem 0 0.25rem;
 
 		opacity: 0;
 	}
@@ -237,10 +249,61 @@ const projects = await getProjects();
 	}
 	.animal-friends :global(.shoebill) {
 		height: 100%;
-		transform: scaleX(-100%);
 	}
 	.animal-friends :global(.capybara) {
 		height: 55%;
+		transform: scaleX(-100%);
+	}
+
+	/* Mobile footer */
+	.mobile-footer {
+		display: none;
+		width: 100%;
+		padding: 1rem 2rem;
+	}
+	.mobile-animal-friends {
+		display: flex;
+		width: 100%;
+		justify-content: end;
+		align-items: end;
+		padding-top: 2rem;
+		gap: 2rem;
+		height: 15rem;
+	}
+	.mobile-animal-friends .v-left {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: end;
+	}
+	.mobile-animal-friends .fact-container {
+		flex-grow: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-left: 1rem;
+		margin-top: -2rem;
+	}
+	.mobile-animal-friends .fact-container p {
+		text-transform: uppercase;
+		font-size: 0.75rem;
+		font-weight: bold;
+	}
+	.mobile-animal-friends :global(svg) {
+		opacity: 0.75;
+	}
+	.mobile-animal-friends :global(.capybara) {
+		flex-basis: 55%;
+		transform: scaleX(-100%);
+	}
+	.mobile-animal-friends :global(.shoebill) {
+		flex-shrink: 0;
+		height: 100%;
+	}
+	@media (max-width: 799px) {
+		.mobile-footer {
+			display: block;
+		}
 	}
 </style>
 
@@ -259,7 +322,7 @@ const projects = await getProjects();
 </script>
 
 <script>
-	// Animal placement logic
+	// Animal placement logic (in projects)
 
 	const projectContainer = document.querySelector("[data-projects-container]");
 	const projects = document.querySelectorAll("[data-project]");
@@ -281,4 +344,17 @@ const projects = await getProjects();
 
 	addEventListener("resize", resizeAnimals);
 	resizeAnimals();
+</script>
+
+
+<script>
+	// Fun fact logic
+
+	import { getFunFact } from "../lib/funFacts";
+
+	const fact = getFunFact();
+	const factContainers = document.querySelectorAll(".fun-fact")
+
+	for (const container of factContainers)
+		container.innerHTML = fact;
 </script>
