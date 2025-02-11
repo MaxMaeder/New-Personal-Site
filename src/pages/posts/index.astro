@@ -4,8 +4,7 @@ import PostCard from "../../components/PostCard.astro"
 import { getPosts } from '../../lib/contentful/posts';
 import Button from '../../components/Button.astro';
 import Rss from '../../vectors/Rss.astro';
-import Capybara from '../../vectors/animals/Capybara.astro';
-import Shoebill from '../../vectors/animals/Shoebill.astro';
+import CapybaraWriter from '../../vectors/animals/CapybaraWriter.astro';
 
 const posts = await getPosts();
 ---
@@ -22,10 +21,8 @@ const posts = await getPosts();
 		))}
 	</div>
 	<div class="animal-friends">
-		<Capybara class="capybara" />
-		<Shoebill class="shoebill"/>
+		<CapybaraWriter />
 	</div>
-	{/* Add Percival and Gustavo */}
 </PageLayout>
 
 <style> 
@@ -47,20 +44,13 @@ const posts = await getPosts();
 		display: flex;
 		justify-content: end;
 		align-items: end;
-		gap: 4rem;
 		padding: 0 4rem 2rem;
-		height: 22.5rem;
+		height: 18rem;
 	}
 	.animal-friends :global(svg) {
 		width: auto;
 		opacity: 0.75;
-	}
-	.animal-friends :global(.shoebill) {
 		height: 100%;
-	}
-	.animal-friends :global(.capybara) {
-		height: 55%;
-		transform: scaleX(-100%);
 	}
 	@media (max-width: 799px) {
 		.rss-container {
@@ -72,8 +62,7 @@ const posts = await getPosts();
 			padding: 0 2rem 2rem;
 		}
 		.animal-friends {
-			height: 15rem;
-			gap: 1.5rem;
+			height: 12rem;
 			padding: 0 2rem 1rem;
 		}
 	}
